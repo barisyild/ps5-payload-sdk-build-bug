@@ -20,7 +20,7 @@ jobs:
       - name: Build Payload
         run: |
           export PS5_PAYLOAD_SDK=/opt/ps5-payload-sdk
-          $PS5_PAYLOAD_SDK/bin/prospero-strip
+          bash -x $PS5_PAYLOAD_SDK/bin/prospero-strip
       - uses: actions/upload-artifact@v4
         with:
           name: airpsx.elf
