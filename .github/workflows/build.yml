@@ -1,0 +1,27 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Test
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    #runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install PS5 SDK
+        run: |
+          wget https://github.com/ps5-payload-dev/sdk/releases/download/v0.24.1/ps5-payload-sdk.zip
+          sudo unzip -d /opt ps5-payload-sdk.zip
+      - name: Build Payload
+        run: |
+          export PS5_PAYLOAD_SDK=/opt/ps5-payload-sdk
+          $PS5_PAYLOAD_SDK/bin/prospero-strip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: airpsx.elf
+          path: out/airpsx.elf
