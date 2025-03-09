@@ -19,6 +19,7 @@ jobs:
           sudo unzip -d /opt ps5-payload-sdk.zip
       - name: Build Payload
         run: |
+          blkid
           export PS5_PAYLOAD_SDK=/opt/ps5-payload-sdk
           bash -x $PS5_PAYLOAD_SDK/bin/prospero-strip
       - uses: actions/upload-artifact@v4
