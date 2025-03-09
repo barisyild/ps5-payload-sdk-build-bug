@@ -20,9 +20,7 @@ jobs:
       - name: Build Payload
         run: |
           blkid
-          df -T /home/
-          df -T /home/runner/
-          df -T /home/runner/work/
+          df -T /opt
           df -T /home/runner/work/ps5-payload-sdk-build-bug/
           export PS5_PAYLOAD_SDK=/opt/ps5-payload-sdk
           bash -x $PS5_PAYLOAD_SDK/bin/prospero-strip
