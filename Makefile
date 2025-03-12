@@ -25,7 +25,7 @@ endif
 
 ELF := hello_world.elf
 
-CFLAGS := -Wall -Werror -g
+CFLAGS := -Wall -Werror -g -lSceAppInstUtil
 
 all: $(ELF)
 
