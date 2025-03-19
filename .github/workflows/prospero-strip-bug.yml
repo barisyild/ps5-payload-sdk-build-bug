@@ -20,7 +20,7 @@ jobs:
           execute_install_scripts: true
       - name: Install PS5 SDK
         run: |
-          wget https://github.com/ps5-payload-dev/sdk/releases/download/v0.27/ps5-payload-sdk.zip
+          wget https://github.com/ps5-payload-dev/sdk/releases/download/v0.28/ps5-payload-sdk.zip
           sudo unzip -d /opt ps5-payload-sdk.zip
       - name: Build Payload
         run: |
