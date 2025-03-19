@@ -1,0 +1,31 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Test
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    #runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: awalsh128/cache-apt-pkgs-action@v1.4.3
+        with:
+          packages: bash clang-15 lld-15 socat cmake meson pkg-config
+          version: 1.0
+          execute_install_scripts: true
+      - name: Install PS5 SDK
+        run: |
+          wget https://github.com/ps5-payload-dev/sdk/releases/download/v0.27/ps5-payload-sdk.zip
+          sudo unzip -d /opt ps5-payload-sdk.zip
+      - name: Build Payload
+        run: |
+          #blkid
+          #df -T /opt
+          #df -T /home/runner/work/ps5-payload-sdk-build-bug/
+          export PS5_PAYLOAD_SDK=/opt/ps5-payload-sdk
+          bash -x $PS5_PAYLOAD_SDK/bin/prospero-strip
